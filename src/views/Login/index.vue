@@ -30,12 +30,7 @@
     </div>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-    name: 'Login'
-})
-</script>
-<script lang="ts" setup>
+<script lang="ts" setup name="Login">
 const store = useStore()
 const route = useRoute()
 const router = useRouter()

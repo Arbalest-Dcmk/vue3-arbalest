@@ -1,12 +1,8 @@
 <template>
     <div class="home">Home</div>
 </template>
-<script lang="ts">
-export default defineComponent({
-    name: 'Home'
-})
-</script>
-<script lang="ts" setup>
+
+<script lang="ts" setup name="Home">
 const color = ref('#036efe')
 </script>
 

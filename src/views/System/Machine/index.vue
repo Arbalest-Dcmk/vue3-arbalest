@@ -2,11 +2,6 @@
     <div>Machine</div>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-    name: 'Machine'
-})
-</script>
-<script lang="ts" setup></script>
+<script lang="ts" setup name="Machine"></script>
 
 <style lang="scss" scoped></style>

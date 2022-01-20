@@ -2,12 +2,6 @@
     <div>Task</div>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-    name: 'Task'
-})
-</script>
-
-<script lang="ts" setup></script>
+<script lang="ts" setup name="Task"></script>
 
 <style lang="scss" scoped></style>
