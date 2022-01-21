@@ -5,7 +5,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { resolve } from 'path'
 import viteSvgIcons from 'vite-plugin-svg-icons';
-import viteArbalest from './vite-plugin/vite-plugin-arbalest'
+import viteArbalest from 'vite-plugin-arbalest'
 
 export default defineConfig({
     plugins: [

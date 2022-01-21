@@ -15,7 +15,8 @@
     "path-browserify": "^1.0.1",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "xlsx": "^0.17.5"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.5",
@@ -32,6 +33,7 @@
     "unplugin-auto-import": "^0.5.4",
     "unplugin-vue-components": "^0.17.10",
     "vite": "^2.7.2",
+    "vite-plugin-arbalest": "^0.1.0",
     "vite-plugin-svg-icons": "^1.0.5",
     "vue-tsc": "^0.29.8"
   }
