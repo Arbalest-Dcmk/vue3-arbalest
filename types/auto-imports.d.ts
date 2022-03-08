@@ -20,6 +20,8 @@ declare module 'vue' {
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     SvgIcon: typeof import('./../src/components/SvgIcon/index.vue')['default']
+    TimeLine: typeof import('./../src/components/TimeLine/index.vue')['default']
+    YDPlayer: typeof import('./../src/components/YDPlayer/index.vue')['default']
   }
 }
 
