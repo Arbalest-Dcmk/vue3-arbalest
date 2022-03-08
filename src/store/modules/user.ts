@@ -2,6 +2,7 @@ import { Module } from 'vuex'
 import { RootState } from '../index'
 import { storage } from '@/utils'
 import apiBus from '@/api'
+
 interface UserInfo {
     id: number
     avatar: string
@@ -9,20 +10,23 @@ interface UserInfo {
     nickname: string
     isAdmin: boolean
 }
+
 export interface UserModule {
     userInfo: UserInfo
 }
 
+const resetUserInfo = (): UserInfo => ({
+    id: 0,
+    avatar: '',
+    username: '',
+    nickname: '',
+    isAdmin: false
+})
+
 const user: Module<UserModule, RootState> = {
     namespaced: true,
     state: {
-        userInfo: {
-            id: 0,
-            avatar: '',
-            username: '',
-            nickname: '',
-            isAdmin: false
-        }
+        userInfo: resetUserInfo()
     },
     getters: {
         username: state => state.userInfo.username
@@ -32,13 +36,7 @@ const user: Module<UserModule, RootState> = {
             state.userInfo = userInfo
         },
         resetUser(state) {
-            state.userInfo = {
-                id: 0,
-                avatar: '',
-                username: '',
-                nickname: '',
-                isAdmin: false
-            }
+            state.userInfo = resetUserInfo()
         }
     },
     actions: {

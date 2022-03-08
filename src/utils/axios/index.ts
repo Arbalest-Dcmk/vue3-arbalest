@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, Canceler } from 'axios'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import store from '@/store'
-import config from '@/config'
-import { storage, snakeToCamel } from '@/utils'
+import config, { TOKEN_KEY } from '@/config'
+import { storage, camelToSnake, snakeToCamel } from '@/utils'
 import router from '@/router'
 
 // 取消请求
@@ -40,16 +40,18 @@ const errorHandle = (code: number, message: string) => {
 }
 
 // 实例
-interface RequestExtraConfig {
-    needTransform?: boolean
+interface RequestExtraConfig extends AxiosRequestConfig {
     needToken?: boolean
+    paramsTransform?: boolean
+    resultTransform?: boolean
 }
 
-const request = (cfg: AxiosRequestConfig, ecfg?: RequestExtraConfig) => {
+const request = (cfg: RequestExtraConfig) => {
     const extraConfig = {
         needToken: true,
-        needTransform: true,
-        ...ecfg
+        paramsTransform: true,
+        resultTransform: true,
+        ...cfg
     }
 
     // 全局配置
@@ -65,8 +67,12 @@ const request = (cfg: AxiosRequestConfig, ecfg?: RequestExtraConfig) => {
             if (extraConfig.needToken) {
                 config.headers = {
                     ...config.headers,
-                    Authorization: storage.get('access_token')
+                    [TOKEN_KEY]: storage.get('access_token')
                 }
+            }
+            if (extraConfig.paramsTransform) {
+                config.data = camelToSnake(config.data)
+                config.params = camelToSnake(config.params)
             }
             return config
         },
@@ -86,7 +92,7 @@ const request = (cfg: AxiosRequestConfig, ecfg?: RequestExtraConfig) => {
                     errorHandle(code, message)
                     return Promise.reject(response.data)
                 }
-                return Promise.resolve(extraConfig.needTransform ? snakeToCamel(data) : data)
+                return Promise.resolve(extraConfig.resultTransform ? snakeToCamel(data) : data)
             } else {
                 const { data } = response
                 return Promise.resolve({

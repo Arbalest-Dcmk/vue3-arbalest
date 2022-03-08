@@ -10,6 +10,7 @@ const envConfig = {
         baseUrl: '/api'
     }
 }
+export const TOKEN_KEY = 'Authorization'
 export const STORAGE_KEY = 'arbalest'
 
 export default {

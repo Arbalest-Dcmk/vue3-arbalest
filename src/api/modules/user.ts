@@ -5,7 +5,8 @@ export default {
         request({
             url: '/login',
             method: 'post',
-            data
+            data,
+            needToken: false
         }),
 
     // 用户信息
