@@ -2,7 +2,7 @@
     <template v-if="!item.children || item.children.length === 0">
         <router-link :to="resolvePath(item.path)">
             <el-menu-item :index="resolvePath(item.path)">
-                <MenuItem :icon="String(item.meta?.icon)" :title="String(item.meta?.title)" />
+                <MenuItem :icon="item.meta.icon" :title="item.meta.title" />
             </el-menu-item>
         </router-link>
     </template>
@@ -10,7 +10,7 @@
     <template v-else>
         <el-sub-menu :index="resolvePath(item.path)">
             <template #title>
-                <MenuItem :icon="String(item.meta?.icon)" :title="String(item.meta?.title)" />
+                <MenuItem :icon="item.meta.icon" :title="item.meta.title" />
             </template>
             <SidebarItem
                 v-for="child in item.children"
