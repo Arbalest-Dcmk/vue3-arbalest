@@ -5,19 +5,19 @@ import { constantRoutes, asyncRoutes, NotFound } from '@/router'
 
 export interface PermissionModule {
     routes: RouteRecordRaw[]
-    asyncRoutes: RouteRecordRaw[]
+    dynamicRoutes: RouteRecordRaw[]
 }
 
 const permission: Module<PermissionModule, RootState> = {
     namespaced: true,
     state: {
         routes: [],
-        asyncRoutes: []
+        dynamicRoutes: []
     },
     mutations: {
         setRoutes: (state, routes) => {
             state.routes = [...constantRoutes, ...routes, NotFound]
-            state.asyncRoutes = routes
+            state.dynamicRoutes = routes
         }
     },
     actions: {
