@@ -1,10 +1,11 @@
 import { createApp } from 'vue'
 import router from '@/router'
-import store from '@/store'
 import App from './App.vue'
+import { createPinia } from 'pinia'
 import 'normalize.css'
 import 'element-plus/dist/index.css'
-import '@/router/guide'
 import '@/style/index.scss'
 import 'virtual:svg-icons-register'
-createApp(App).use(store).use(router).mount('#app')
+import '@/router/guide'
+
+createApp(App).use(createPinia()).use(router).mount('#app')

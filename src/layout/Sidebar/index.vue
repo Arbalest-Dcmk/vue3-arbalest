@@ -16,19 +16,14 @@
     </el-scrollbar>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from 'vue'
-export default defineComponent({ name: 'Sidebar' })
-</script>
-
-<script lang="ts" setup>
-import { useStore } from 'vuex'
+<script lang="ts" setup name="Sidebar">
 import { RouteRecordRaw, useRoute } from 'vue-router'
 import SidebarItem from './SidebarItem.vue'
-const store = useStore()
+import { usePermissionStore } from '@/store/permission'
+const permissionStore = usePermissionStore()
 const route = useRoute()
 
-const routes = computed(() => store.state.permission.routes)
+const routes = computed(() => permissionStore.routes)
 const menuList = computed(() => filterHideRouter(routes.value))
 
 const filterHideRouter = (routes: RouteRecordRaw[]): RouteRecordRaw[] =>

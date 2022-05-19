@@ -31,7 +31,8 @@
 </template>
 
 <script lang="ts" setup name="Login">
-const store = useStore()
+import { useUserStore } from '@/store/user'
+const userStore = useUserStore()
 const route = useRoute()
 const router = useRouter()
 const form = ref()
@@ -57,8 +58,8 @@ const loading = ref(false)
 const doLogin = async () => {
     await form.value.validate()
     loading.value = true
-    store
-        .dispatch('user/login', formData)
+    userStore
+        .login(formData)
         .then(() => {
             router.push(redirectUrl.value || '/')
         })

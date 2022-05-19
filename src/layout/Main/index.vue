@@ -13,13 +13,7 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue'
-
-export default defineComponent({ name: 'Main' })
-</script>
-
-<script lang="ts" setup>
+<script lang="ts" setup name="Main">
 const keepAlive = ref(['Home'])
 </script>
 

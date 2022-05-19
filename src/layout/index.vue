@@ -1,7 +1,7 @@
 <template>
     <div class="layout">
         <el-container>
-            <el-aside class="sidebar" :class="{ hide: !opened }">
+            <el-aside class="sidebar" :class="{ hide: !appStore.sidebarOpened }">
                 <Sidebar />
             </el-aside>
             <el-container>
@@ -16,19 +16,12 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from 'vue'
-
-export default defineComponent({ name: 'Layout' })
-</script>
-
-<script lang="ts" setup>
+<script lang="ts" setup name="Layout">
 import Navbar from './Navbar/index.vue'
 import Main from './Main/index.vue'
 import Sidebar from './Sidebar/index.vue'
-import { useStore } from 'vuex'
-const store = useStore()
-const opened = computed(() => store.state.app.sidebarOpened)
+import { useAppStore } from '@/store/app'
+const appStore = useAppStore()
 </script>
 
 <style lang="scss" scoped>

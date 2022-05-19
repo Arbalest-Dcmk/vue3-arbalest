@@ -20,29 +20,25 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from 'vue'
-
-export default defineComponent({ name: 'Navbar' })
-</script>
-
-<script lang="ts" setup>
+<script lang="ts" setup name="Navbar">
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import Breadcrumb from '../Breadcrumb/index.vue'
 import { ArrowDown } from '@element-plus/icons-vue'
-import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-const store = useStore()
+import { useUserStore } from '@/store/user'
+import { useAppStore } from '@/store/app'
+const userStore = useUserStore()
+const appStore = useAppStore()
 const router = useRouter()
-const name = computed(() => store.getters['user/username'])
+const name = computed(() => userStore.userInfo.username)
 const doLogout = () => {
-    store.dispatch('user/logout')
+    userStore.logout()
     router.push('/login')
 }
 const toggleSidebar = () => {
-    store.dispatch('app/toggleSidebar')
+    appStore.toggleSidebar()
 }
-const opened = computed(() => store.state.app.sidebarOpened)
+const opened = computed(() => appStore.sidebarOpened)
 </script>
 
 <style lang="scss" scoped>

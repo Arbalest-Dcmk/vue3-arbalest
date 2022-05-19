@@ -36,9 +36,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     }
 ]
 
-export const asyncRoutes: Array<RouteRecordRaw> = [
-    ...componentsRoutes
-]
+export const asyncRoutes: Array<RouteRecordRaw> = [...componentsRoutes]
 
 export const resetRouter = () =>
     createRouter({

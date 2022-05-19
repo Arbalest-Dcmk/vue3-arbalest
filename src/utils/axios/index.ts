@@ -1,10 +1,10 @@
 import axios, { AxiosRequestConfig, Canceler } from 'axios'
 import { ElMessageBox, ElMessage } from 'element-plus'
-import store from '@/store'
 import config, { TOKEN_KEY } from '@/config'
-import { storage, camelToSnake, snakeToCamel } from '@/utils'
+import { camelToSnake, snakeToCamel } from '@/utils'
 import router from '@/router'
-
+import { useUserStore } from '@/store/user'
+const userStore = useUserStore()
 // 取消请求
 const cancelerMap = new Map<string, Canceler>()
 const createCanceler = (config: AxiosRequestConfig) => {
@@ -22,7 +22,7 @@ const removeAllCanceler = () => {
 const errorHandle = (code: number, message: string) => {
     if ([401, 403].includes(code)) {
         removeAllCanceler()
-        store.dispatch('user/logout')
+        userStore.logout()
         ElMessageBox.confirm('登陆失效，请重新登录', '登录失效', {
             confirmButtonText: '确定',
             showClose: false,
@@ -67,7 +67,7 @@ const request = (cfg: RequestExtraConfig) => {
             if (extraConfig.needToken) {
                 config.headers = {
                     ...config.headers,
-                    [TOKEN_KEY]: storage.get('access_token')
+                    [TOKEN_KEY]: userStore.token
                 }
             }
             if (extraConfig.paramsTransform) {

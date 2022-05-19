@@ -4,31 +4,31 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { resolve } from 'path'
-import viteSvgIcons from 'vite-plugin-svg-icons';
+import viteSvgIcons from 'vite-plugin-svg-icons'
 import viteArbalest from 'vite-plugin-arbalest'
 
 export default defineConfig({
     plugins: [
         vue(),
         AutoImport({
-            imports: ['vue', 'vue-router', 'vuex'],
-            dts:'types/components.d.ts',
+            imports: ['vue', 'vue-router'],
+            dts: 'types/components.d.ts',
             resolvers: [ElementPlusResolver()]
         }),
         Components({
             dirs: ['src/components'],
-            dts:'types/auto-imports.d.ts',
+            dts: 'types/auto-imports.d.ts',
             resolvers: [ElementPlusResolver()]
         }),
         viteSvgIcons({
             iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
-            symbolId: 'icon-[dir]-[name]',
+            symbolId: 'icon-[dir]-[name]'
         }),
         viteArbalest()
     ],
-    css:{
-        preprocessorOptions:{
-            scss:{
+    css: {
+        preprocessorOptions: {
+            scss: {
                 additionalData: `@import "./src/style/global.scss";`
             }
         }

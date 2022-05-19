@@ -14,9 +14,9 @@
     "lodash-es": "^4.17.21",
     "normalize.css": "^8.0.1",
     "path-browserify": "^1.0.1",
+    "pinia": "^2.0.14",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12",
-    "vuex": "^4.0.2",
     "xlsx": "^0.17.5"
   },
   "devDependencies": {

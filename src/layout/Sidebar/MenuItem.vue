@@ -2,13 +2,7 @@
     <SvgIcon v-if="icon" :name="icon" class="svg-icon" />
     <span>{{ title }}</span>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({ name: 'MenuItem' })
-</script>
-
-<script lang="ts" setup>
+<script lang="ts" setup name="MenuItem">
 import SvgIcon from '@/components/SvgIcon/index.vue'
 const props = defineProps({
     icon: {

@@ -8,13 +8,7 @@
     </el-breadcrumb>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue'
-
-export default defineComponent({ name: 'Breadcrumb' })
-</script>
-
-<script lang="ts" setup>
+<script lang="ts" setup name="Breadcrumb">
 import { useRoute } from 'vue-router'
 const route = useRoute()
 const levelList = ref<any[]>([])

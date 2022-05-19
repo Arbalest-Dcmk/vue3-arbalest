@@ -22,13 +22,8 @@
     </template>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup name="SidebarItem">
 import path from 'path-browserify'
-export default defineComponent({ name: 'SidebarItem' })
-</script>
-
-<script lang="ts" setup>
 import MenuItem from './MenuItem.vue'
 const props = defineProps({
     item: {
