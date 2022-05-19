@@ -1,9 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { shallowRef } from 'vue'
 import Layout from '@/layout/index.vue'
-import workbenchRoutes from './modules/workbench'
-import crawlerRoutes from './modules/crawler'
-import systemRoutes from './modules/system'
+import componentsRoutes from './modules/components'
 export const NotFound: RouteRecordRaw = {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
@@ -39,9 +37,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
 ]
 
 export const asyncRoutes: Array<RouteRecordRaw> = [
-    ...workbenchRoutes,
-    ...crawlerRoutes,
-    ...systemRoutes
+    ...componentsRoutes
 ]
 
 export const resetRouter = () =>
