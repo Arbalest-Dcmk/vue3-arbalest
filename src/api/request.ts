@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, Canceler } from 'axios'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import config, { TOKEN_KEY } from '@/config'
-import { camelToSnake, snakeToCamel } from '@/utils'
+import { camelToSnake, snakeToCamel } from '@/utils/transfer'
 import router from '@/router'
 import { useUserStore } from '@/store/user'
 const userStore = useUserStore()

@@ -1,4 +1,4 @@
-import { request } from '@/utils'
+import request from '@/api/request'
 export default {
     // 登录
     login: (data: any) =>

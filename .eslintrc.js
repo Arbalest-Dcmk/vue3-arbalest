@@ -7,14 +7,12 @@ module.exports = {
     extends: [
         'plugin:vue/vue3-recommended',
         'plugin:prettier/recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:prettier/recommended'
+        'plugin:@typescript-eslint/recommended'
     ],
     parser: 'vue-eslint-parser',
     parserOptions: {
         'parser': '@typescript-eslint/parser',
         'ecmaVersion': 'latest',
-        'parser': '@typescript-eslint/parser',
         'sourceType': 'module'
     },
     rules: {

@@ -2,8 +2,8 @@ import router from '@/router'
 import { RouteRecordRaw } from 'vue-router'
 import { usePermissionStore } from '@/store/permission'
 import { useUserStore } from '@/store/user'
-const whiteList = ['/login']
 
+const whiteList = ['/login']
 router.beforeEach(async (to, from, next) => {
     const permissionStore = usePermissionStore()
     const userStore = useUserStore()

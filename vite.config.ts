@@ -12,12 +12,12 @@ export default defineConfig({
         vue(),
         AutoImport({
             imports: ['vue', 'vue-router'],
-            dts: 'types/components.d.ts',
+            dts: 'types/auto-imports.d.ts',
             resolvers: [ElementPlusResolver()]
         }),
         Components({
             dirs: ['src/components'],
-            dts: 'types/auto-imports.d.ts',
+            dts: 'types/components.d.ts',
             resolvers: [ElementPlusResolver()]
         }),
         viteSvgIcons({
