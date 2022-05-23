@@ -1,5 +1,5 @@
 <template>
-    <a-menu mode="inline" :collapsed="false" theme="dark">
+    <a-menu mode="inline" theme="dark" :selected-keys="current" @click="handleClick">
         <SidebarItem
             v-for="item in menuList"
             :key="item.path"
@@ -17,7 +17,9 @@ const permissionStore = usePermissionStore()
 
 const routes = computed(() => permissionStore.routes)
 const menuList = computed(() => filterHideRouter(routes.value))
-
+const router = useRouter()
+const route = useRoute()
+const current = ref([route.path])
 const filterHideRouter = (routes: RouteRecordRaw[]): RouteRecordRaw[] =>
     routes.filter(item => {
         if (!item.meta || item.meta.hidden !== true) {
@@ -28,6 +30,12 @@ const filterHideRouter = (routes: RouteRecordRaw[]): RouteRecordRaw[] =>
         }
         return false
     })
+
+const handleClick = (v: any) => {
+    const { key } = v
+    router.push(key)
+    current.value = [key]
+}
 </script>
 
 <style lang="less" scoped></style>

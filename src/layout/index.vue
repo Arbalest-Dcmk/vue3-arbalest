@@ -1,12 +1,12 @@
 <template>
     <div class="layout">
         <a-layout>
-            <a-layout-sider :collapsed="appStore.sidebarOpened" class="sidebar">
+            <a-layout-sider :collapsed="!appStore.sidebarOpened" class="sidebar">
                 <Sidebar />
             </a-layout-sider>
             <a-layout class="container">
                 <a-layout-header class="header"><Navbar /></a-layout-header>
-                <a-layout-content class="main" padding="0"><Main /></a-layout-content>
+                <a-layout-content class="main"><Main /></a-layout-content>
             </a-layout>
         </a-layout>
     </div>
@@ -26,6 +26,8 @@ const appStore = useAppStore()
 }
 .sidebar {
     background: @primary-bg;
+    height: 100vh;
+    overflow-y: scroll;
 }
 .container {
     background: @container-bg;

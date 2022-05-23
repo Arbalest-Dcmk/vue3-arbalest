@@ -10,21 +10,11 @@
 
 <script lang="ts" setup name="Breadcrumb">
 const route = useRoute()
-const levelList = ref([])
-onMounted(() => {
-    getBreadcrumb()
-})
-watch(
-    () => route.path,
-    () => {
-        getBreadcrumb()
-    }
-)
+const levelList = ref<any[]>([])
 const getBreadcrumb = () => {
-    const matched = route.matched.filter(item => item.meta && item.meta.title)
-    levelList.value = matched.filter(
-        item => item.meta && item.meta.title && item.meta.breadcrumb !== false
-    )
+    const matched = route.matched.filter(item => item.meta?.title)
+    levelList.value = matched.filter(item => item.meta?.title && item.meta.breadcrumb !== false)
 }
+watchEffect(getBreadcrumb)
 </script>
 <style lang="less" scoped></style>

@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
+import { useStorage } from '@vueuse/core'
 
 export const useAppStore = defineStore('app', {
     state: () => ({
-        sidebarOpened: true
+        sidebarOpened: useStorage('sidebarOpened', true)
     }),
     actions: {
         toggleSidebar() {

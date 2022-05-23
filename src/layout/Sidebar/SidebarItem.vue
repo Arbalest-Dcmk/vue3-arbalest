@@ -17,18 +17,18 @@
     </template>
 
     <template v-else>
-        <router-link :to="resolvePath(item.path)">
-            <a-menu-item :key="resolvePath(item.path)">
-                <MenuItem :icon="item.meta.icon" :title="item.meta.title" />
-            </a-menu-item>
-        </router-link>
+        <a-menu-item :key="item.redirect ? item.redirect : resolvePath(item.path)">
+            <template v-if="item.meta.icon" #icon>
+                <SvgIcon :name="item.meta.icon" class="svg-icon" />
+            </template>
+            <span>{{ item.meta.title }}</span>
+        </a-menu-item>
     </template>
 </template>
 
 <script lang="ts" setup name="SidebarItem">
 import path from 'path-browserify'
 import SvgIcon from '@/components/SvgIcon/index.vue'
-import MenuItem from './MenuItem.vue'
 const props = defineProps({
     item: {
         type: Object,

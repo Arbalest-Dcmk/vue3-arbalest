@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig, Canceler } from 'axios'
-import { ElMessageBox, ElMessage } from 'element-plus'
-import { message as AntdMessage, Modal as AntdModal } from 'ant-design-vue'
+import { message as AntdvMessage, Modal as AntdvModal } from 'ant-design-vue'
 import config, { TOKEN_KEY } from '@/config'
 import { camelToSnake, snakeToCamel } from '@/utils/transfer'
 import router from '@/router'
@@ -24,13 +23,9 @@ const errorHandle = (code: number, message: string) => {
     if ([401, 403].includes(code)) {
         removeAllCanceler()
         userStore.logout()
-        AntdModal.confirm({
+        AntdvModal.warning({
             title: '登录失效',
             content: '登陆失效，请重新登录',
-            closable: false,
-            maskClosable: false,
-            cancelText: '',
-            keyboard: false,
             onOk: () => {
                 if (router.currentRoute.value.path !== '/login') {
                     router.replace('login')
@@ -38,7 +33,7 @@ const errorHandle = (code: number, message: string) => {
             }
         })
     } else {
-        AntdMessage.warning(message || '请求失败，请检查网络')
+        AntdvMessage.warning(message || '请求失败，请检查网络')
     }
 }
 

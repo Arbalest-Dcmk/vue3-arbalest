@@ -17,7 +17,7 @@ module.exports = {
     },
     rules: {
         'no-console': 'off',
-        'no-debugger': 'off',
+        'no-debugger': 'error',
         'indent': ['error', 4],
         'vue/script-setup-uses-vars': 'error',
         'vue/multi-word-component-names':'off',
