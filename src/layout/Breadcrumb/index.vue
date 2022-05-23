@@ -1,17 +1,16 @@
 <template>
-    <el-breadcrumb separator="/">
-        <transition-group name="breadcrumb">
-            <el-breadcrumb-item v-for="item in levelList" :key="item.path">
-                <span>{{ item.meta.title }}</span>
-            </el-breadcrumb-item>
-        </transition-group>
-    </el-breadcrumb>
+    <div class="breadcrumb">
+        <a-breadcrumb>
+            <a-breadcrumb-item v-for="item in levelList" :key="item.path">{{
+                item.meta.title
+            }}</a-breadcrumb-item>
+        </a-breadcrumb>
+    </div>
 </template>
 
 <script lang="ts" setup name="Breadcrumb">
-import { useRoute } from 'vue-router'
 const route = useRoute()
-const levelList = ref<any[]>([])
+const levelList = ref([])
 onMounted(() => {
     getBreadcrumb()
 })
@@ -28,5 +27,4 @@ const getBreadcrumb = () => {
     )
 }
 </script>
-
-<style lang="scss" scoped></style>
+<style lang="less" scoped></style>

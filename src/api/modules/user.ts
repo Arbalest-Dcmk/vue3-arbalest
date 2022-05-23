@@ -1,6 +1,5 @@
 import request from '@/api/request'
 export default {
-    // 登录
     login: (data: any) =>
         request({
             url: '/login',
@@ -9,7 +8,6 @@ export default {
             needToken: false
         }),
 
-    // 用户信息
     info: () =>
         request({
             url: '/info',

@@ -1,11 +1,12 @@
 import axios, { AxiosRequestConfig, Canceler } from 'axios'
 import { ElMessageBox, ElMessage } from 'element-plus'
+import { message as AntdMessage, Modal as AntdModal } from 'ant-design-vue'
 import config, { TOKEN_KEY } from '@/config'
 import { camelToSnake, snakeToCamel } from '@/utils/transfer'
 import router from '@/router'
 import { useUserStore } from '@/store/user'
 const userStore = useUserStore()
-// 取消请求
+// cancel request
 const cancelerMap = new Map<string, Canceler>()
 const createCanceler = (config: AxiosRequestConfig) => {
     return new axios.CancelToken(cancel => {
@@ -18,28 +19,30 @@ const removeAllCanceler = () => {
     cancelerMap.clear()
 }
 
-// 错误处理
+// error handle
 const errorHandle = (code: number, message: string) => {
     if ([401, 403].includes(code)) {
         removeAllCanceler()
         userStore.logout()
-        ElMessageBox.confirm('登陆失效，请重新登录', '登录失效', {
-            confirmButtonText: '确定',
-            showClose: false,
-            showCancelButton: false,
-            closeOnClickModal: false,
-            type: 'warning'
-        }).then(() => {
-            if (router.currentRoute.value.path !== '/login') {
-                router.replace('login')
+        AntdModal.confirm({
+            title: '登录失效',
+            content: '登陆失效，请重新登录',
+            closable: false,
+            maskClosable: false,
+            cancelText: '',
+            keyboard: false,
+            onOk: () => {
+                if (router.currentRoute.value.path !== '/login') {
+                    router.replace('login')
+                }
             }
         })
     } else {
-        ElMessage.warning(message || '请求失败，请检查网络')
+        AntdMessage.warning(message || '请求失败，请检查网络')
     }
 }
 
-// 实例
+// instance
 interface RequestExtraConfig extends AxiosRequestConfig {
     needToken?: boolean
     paramsTransform?: boolean
@@ -54,13 +57,13 @@ const request = (cfg: RequestExtraConfig) => {
         ...cfg
     }
 
-    // 全局配置
+    // config
     const service = axios.create({
         baseURL: config.baseUrl,
         timeout: 15000
     })
 
-    // 请求拦截
+    // request interception
     service.interceptors.request.use(
         (config: AxiosRequestConfig) => {
             config.cancelToken = createCanceler(config)
@@ -82,7 +85,7 @@ const request = (cfg: RequestExtraConfig) => {
         }
     )
 
-    // 响应拦截
+    // response interception
     service.interceptors.response.use(
         response => {
             const { 'content-type': contentType } = response.headers

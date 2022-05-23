@@ -3,19 +3,14 @@
         <SvgIcon name="toggle" class="toggle" :class="{ hide: !opened }" @click="toggleSidebar" />
         <Breadcrumb />
         <div class="layout-header-menu">
-            <el-dropdown>
-                <span class="el-dropdown-link">
-                    {{ name }}
-                    <el-icon class="el-icon--right">
-                        <arrow-down />
-                    </el-icon>
-                </span>
-                <template #dropdown>
-                    <el-dropdown-menu>
-                        <el-dropdown-item @click="doLogout">logout</el-dropdown-item>
-                    </el-dropdown-menu>
+            <a-dropdown trigger="click" class="user-dropdown">
+                <span class="el-dropdown-link"> {{ user.username }} <down-outlined /> </span>
+                <template #overlay>
+                    <a-menu>
+                        <a-menu-item @click="doLogout">logout</a-menu-item>
+                    </a-menu>
                 </template>
-            </el-dropdown>
+            </a-dropdown>
         </div>
     </div>
 </template>
@@ -23,14 +18,12 @@
 <script lang="ts" setup name="Navbar">
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import Breadcrumb from '../Breadcrumb/index.vue'
-import { ArrowDown } from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
+const router = useRouter()
 const userStore = useUserStore()
 const appStore = useAppStore()
-const router = useRouter()
-const name = computed(() => userStore.userInfo.username)
+const user = computed(() => userStore.userInfo)
 const doLogout = () => {
     userStore.logout()
     router.push('/login')
@@ -41,7 +34,7 @@ const toggleSidebar = () => {
 const opened = computed(() => appStore.sidebarOpened)
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .layout-header {
     height: 100%;
     display: flex;
@@ -52,6 +45,7 @@ const opened = computed(() => appStore.sidebarOpened)
     justify-content: right;
     margin-left: auto;
 }
+
 .toggle {
     font-size: 18px;
     cursor: pointer;
@@ -61,5 +55,9 @@ const opened = computed(() => appStore.sidebarOpened)
     &.hide {
         transform: rotate(0);
     }
+}
+
+.user-dropdown {
+    cursor: pointer;
 }
 </style>

@@ -1,18 +1,14 @@
 <template>
     <div class="layout">
-        <el-container>
-            <el-aside class="sidebar" :class="{ hide: !appStore.sidebarOpened }">
+        <a-layout>
+            <a-layout-sider :collapsed="appStore.sidebarOpened" class="sidebar">
                 <Sidebar />
-            </el-aside>
-            <el-container>
-                <el-header>
-                    <Navbar />
-                </el-header>
-                <el-main>
-                    <Main />
-                </el-main>
-            </el-container>
-        </el-container>
+            </a-layout-sider>
+            <a-layout class="container">
+                <a-layout-header class="header"><Navbar /></a-layout-header>
+                <a-layout-content class="main" padding="0"><Main /></a-layout-content>
+            </a-layout>
+        </a-layout>
     </div>
 </template>
 
@@ -24,23 +20,21 @@ import { useAppStore } from '@/store/app'
 const appStore = useAppStore()
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .layout {
     min-height: 100vh;
 }
-.el-container {
-    min-height: 100vh;
-}
 .sidebar {
-    background: #545c64;
-    width: 200px;
-    transition: all 0.28s;
-    &.hide {
-        width: 0;
-    }
+    background: @primary-bg;
 }
-.el-main {
-    height: calc(100vh - 60px);
-    overflow-y: scroll;
+.container {
+    background: @container-bg;
+}
+.header {
+    background: @page-bg;
+    padding: 0 20px;
+}
+.main {
+    height: calc(100vh - 64px);
 }
 </style>

@@ -28,7 +28,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
                 component: () => import('@/views/Home/index.vue'),
                 meta: {
                     title: 'Home',
-                    hidden: true,
+                    hidden: false,
                     activeMenu: '/'
                 }
             }

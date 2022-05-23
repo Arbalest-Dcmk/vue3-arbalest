@@ -16,7 +16,7 @@ const props = defineProps({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .svg-icon {
     margin-right: 10px;
 }

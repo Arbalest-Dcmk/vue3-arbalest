@@ -17,4 +17,10 @@
 const keepAlive = ref(['Home'])
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped>
+.main {
+    overflow-y: scroll;
+    padding: 16px 20px 20px;
+    box-sizing: border-box;
+}
+</style>
