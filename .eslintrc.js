@@ -1,8 +1,8 @@
 module.exports = {
     env: {
-        'browser': true,
-        'node': true,
-        'es2021': true
+        browser: true,
+        node: true,
+        es2021: true
     },
     extends: [
         'plugin:vue/vue3-recommended',
@@ -11,21 +11,24 @@ module.exports = {
     ],
     parser: 'vue-eslint-parser',
     parserOptions: {
-        'parser': '@typescript-eslint/parser',
-        'ecmaVersion': 'latest',
-        'sourceType': 'module'
+        parser: '@typescript-eslint/parser',
+        ecmaVersion: 'latest',
+        sourceType: 'module'
     },
     rules: {
         'no-console': 'off',
         'no-debugger': 'error',
-        'indent': ['error', 4],
+        indent: ['error', 4, { SwitchCase: 1 }],
         'vue/script-setup-uses-vars': 'error',
-        'vue/multi-word-component-names':'off',
-        'vue/v-on-event-hyphenation':'off',
-        '@typescript-eslint/no-unused-vars':['warn',{
-            'varsIgnorePattern':'props',
-            'argsIgnorePattern':'none'
-        }],
+        'vue/multi-word-component-names': 'off',
+        'vue/v-on-event-hyphenation': 'off',
+        '@typescript-eslint/no-unused-vars': [
+            'warn',
+            {
+                varsIgnorePattern: 'props',
+                argsIgnorePattern: 'none'
+            }
+        ],
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-empty-function': 'off'
     }
