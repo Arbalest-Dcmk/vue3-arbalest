@@ -19,7 +19,7 @@ export default defineConfig({
             dts: 'types/components.d.ts',
             resolvers: [
                 AntDesignVueResolver({
-                    importStyle: 'less',
+                    importStyle: false,
                     resolveIcons: true
                 })
             ]
