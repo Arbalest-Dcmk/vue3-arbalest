@@ -18,6 +18,7 @@ module.exports = {
     rules: {
         'no-console': 'off',
         'no-debugger': 'error',
+        eqeqeq: 'error',
         indent: ['error', 4, { SwitchCase: 1 }],
         'vue/script-setup-uses-vars': 'error',
         'vue/multi-word-component-names': 'off',
