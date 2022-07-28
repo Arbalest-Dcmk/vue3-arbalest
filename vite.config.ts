@@ -6,10 +6,12 @@ import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import { resolve } from 'path'
 import viteSvgIcons from 'vite-plugin-svg-icons'
 import viteArbalest from 'vite-plugin-arbalest'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 
 export default defineConfig({
     plugins: [
         vue(),
+        vueJsx(),
         AutoImport({
             imports: ['vue', 'vue-router'],
             dts: 'types/auto-imports.d.ts'
