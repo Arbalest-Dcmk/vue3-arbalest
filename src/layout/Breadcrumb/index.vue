@@ -1,15 +1,13 @@
 <template>
     <div class="breadcrumb">
-        <div class="breadcrumb">
-            <transition-group mode="out-in" name="breadcrumb">
-                <template v-for="(item, index) in routes" :key="item.path">
-                    <div class="breadcrumb-item">
-                        <span>{{ item.meta.title }}</span>
-                        <span class="separator" v-show="index < routes.length - 1">/</span>
-                    </div>
-                </template>
-            </transition-group>
-        </div>
+        <transition-group mode="out-in" name="breadcrumb">
+            <template v-for="(item, index) in routes" :key="item.path">
+                <div class="breadcrumb-item">
+                    <span>{{ item.meta.title }}</span>
+                    <span class="separator" v-show="index < routes.length - 1">/</span>
+                </div>
+            </template>
+        </transition-group>
     </div>
 </template>
 
