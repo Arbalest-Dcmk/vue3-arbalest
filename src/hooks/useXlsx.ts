@@ -16,8 +16,14 @@ const useXlsx = () => {
         })
     }
 
-    const jsonToExcel = ({ data = [], header = [], fileName = 'excel', sheetName = 'sheet1' }) => {
-        const list = data.map(item => [...Object.keys(item).map(key => item[key])])
+    const jsonToExcel = ({
+        data = <any[]>[],
+        header = <any[]>[],
+        fileName = 'excel',
+        sheetName = 'sheet1'
+    }) => {
+        const list = data.map(item => [...Object.values(item)])
+        header.forEach(item => item.c && (item.c.hidden = true))
         const sheet: Sheet = utils.aoa_to_sheet([header, ...list])
         const workbook: WorkBook = utils.book_new()
         utils.book_append_sheet(workbook, sheet, sheetName)
