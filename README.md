@@ -26,6 +26,7 @@
 -   assets - svg 图标，图片等资源文件
 -   components - 公用业务组件
 -   config - 全局配置，接口地址，常量字典等
+-   enum - ts 枚举
 -   hooks - 需抽象提取出的多处通用逻辑 (命名规范文件名前缀加 use)
 -   layout - 整体布局组件
 -   router - 路由配置（静态路由添加到 index 中，动态路由按功能模块于 modules 中新建）
