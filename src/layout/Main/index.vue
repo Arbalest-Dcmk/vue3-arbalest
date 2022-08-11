@@ -3,7 +3,7 @@
         <router-view v-slot="{ Component, route }">
             <transition :name="`${route.meta.transition ?? 'layout'}`" mode="out-in">
                 <keep-alive :include="keepAlive">
-                    <Component
+                    <component
                         :is="Component"
                         :key="route.meta.usePathKey ? route.path : undefined"
                     />
