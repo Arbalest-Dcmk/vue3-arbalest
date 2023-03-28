@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import { shallowRef } from 'vue'
 import Layout from '@/layout/index.vue'
 import dynamicRoutes from './modules/dynamic'
+import featureRoutes from './modules/feature'
 
 export const NotFound: RouteRecordRaw = {
     path: '/:pathMatch(.*)*',
@@ -37,7 +38,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     }
 ]
 
-export const asyncRoutes: Array<RouteRecordRaw> = [...dynamicRoutes]
+export const asyncRoutes: Array<RouteRecordRaw> = [...dynamicRoutes, ...featureRoutes]
 
 export const resetRouter = () =>
     createRouter({

@@ -6,7 +6,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/dynamic',
         component: shallowRef(Layout),
-        meta: { title: 'dynamic', icon: 'crawler' },
+        meta: { title: 'Dynamic', icon: 'crawler' },
         children: [
             {
                 path: 'page-one',

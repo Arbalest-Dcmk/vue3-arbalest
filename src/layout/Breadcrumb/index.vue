@@ -4,7 +4,7 @@
             <template v-for="(item, index) in routes" :key="item.path">
                 <div class="breadcrumb-item">
                     <span>{{ item.meta.title }}</span>
-                    <span class="separator" v-show="index < routes.length - 1">/</span>
+                    <span v-show="index < routes.length - 1" class="separator">/</span>
                 </div>
             </template>
         </transition-group>
