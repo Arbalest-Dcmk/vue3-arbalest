@@ -4,5 +4,3 @@ dist
 dist-ssr
 *.local
 .vscode
-types/components.d.ts
-types/auto-imports.d.ts
