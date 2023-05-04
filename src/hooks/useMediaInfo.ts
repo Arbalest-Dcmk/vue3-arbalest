@@ -1,15 +1,17 @@
 const useMediaInfo = () => {
     const MediaInfo = window.MediaInfo
     let mediainfo: any = null
-    MediaInfo(
-        {
-            format: 'object',
-            locateFile: (path: string, prefix: string) => prefix + path // Make sure WASM file is loaded from CDN location
-        },
-        (res: any) => {
-            mediainfo = res
+
+    const init = async () => {
+        if (!mediainfo) {
+            mediainfo = await MediaInfo({
+                format: 'object',
+                locateFile: (path: string, prefix: string) => prefix + path // Make sure WASM file is loaded from CDN location
+            })
         }
-    )
+    }
+
+    init()
 
     const getFileInfo = (file: File) => {
         if (!file || !mediainfo) return
