@@ -4,13 +4,17 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import { resolve } from 'path'
-import viteSvgIcons from 'vite-plugin-svg-icons'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import viteArbalest from 'vite-plugin-arbalest'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 export default defineConfig({
     plugins: [
-        vue(),
+        vue({
+            script: {
+                defineModel: true
+            }
+        }),
         vueJsx(),
         AutoImport({
             imports: ['vue', 'vue-router'],
@@ -26,7 +30,7 @@ export default defineConfig({
                 })
             ]
         }),
-        viteSvgIcons({
+        createSvgIconsPlugin({
             iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
             symbolId: 'icon-[dir]-[name]'
         }),
