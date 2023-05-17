@@ -1,4 +1,9 @@
-import axios, { AxiosRequestConfig, Canceler } from 'axios'
+import axios, {
+    AxiosRequestConfig,
+    AxiosRequestHeaders,
+    InternalAxiosRequestConfig,
+    Canceler
+} from 'axios'
 import { message as AntdvMessage, Modal as AntdvModal } from 'ant-design-vue'
 import config, { TOKEN_KEY } from '@/config'
 import { camelToSnake, snakeToCamel } from '@/utils/transfer'
@@ -60,13 +65,13 @@ const request = (cfg: RequestExtraConfig) => {
 
     // request interception
     service.interceptors.request.use(
-        (config: AxiosRequestConfig) => {
+        (config: InternalAxiosRequestConfig) => {
             config.cancelToken = createCanceler(config)
             if (extraConfig.needToken) {
                 config.headers = {
                     ...config.headers,
                     [TOKEN_KEY]: userStore.token
-                }
+                } as AxiosRequestHeaders
             }
             if (extraConfig.paramsTransform) {
                 config.data = camelToSnake(config.data)
