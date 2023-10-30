@@ -9,7 +9,7 @@ import config, { TOKEN_KEY } from '@/config'
 import { camelToSnake, snakeToCamel } from '@/utils/transfer'
 import router from '@/router'
 import { useUserStore } from '@/store/user'
-const userStore = useUserStore()
+
 // cancel request
 const cancelerMap = new Map<string, Canceler>()
 const createCanceler = (config: AxiosRequestConfig) => {
@@ -27,7 +27,7 @@ const removeAllCanceler = () => {
 const errorHandle = (code: number, message: string) => {
     if ([401, 403].includes(code)) {
         removeAllCanceler()
-        userStore.logout()
+        useUserStore().logout()
         AntdvModal.warning({
             title: '登录失效',
             content: '登陆失效，请重新登录',
@@ -70,7 +70,7 @@ const request = (cfg: RequestExtraConfig) => {
             if (extraConfig.needToken) {
                 config.headers = {
                     ...config.headers,
-                    [TOKEN_KEY]: userStore.token
+                    [TOKEN_KEY]: useUserStore().token
                 } as AxiosRequestHeaders
             }
             if (extraConfig.paramsTransform) {
